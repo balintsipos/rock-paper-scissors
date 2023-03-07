@@ -84,6 +84,7 @@ h1 {
     bottom: 0;
     width: 100%;
     color:aliceblue;
+    background-color: grey;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
