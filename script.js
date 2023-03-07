@@ -20,6 +20,11 @@ function updateScores() {
     computerScoreCounter.textContent = computerScore;
 }
 
+function resetScores() {
+    playerScore = 0;
+    computerScore = 0;
+}
+
 function getComputerChoice() {
     choices = ["Rock", "Paper", "Scissors"];
     choice = choices[Math.floor(Math.random()*3)];
@@ -32,41 +37,46 @@ function checkWinCondition() {
     }
 }
 
+function changeComputerAnnounceColor(color) {
+    computerAnnounce.style.color = color;
+    computerAnnounce.style.fontSize = "30px";
+}
+
 function playRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.toLowerCase();
     playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
     
     if (playerChoice == computerChoice) {
         computerAnnounce.textContent = 'It\'s a tie!';
-        computerAnnounce.style.color = "aliceblue";
+        changeComputerAnnounceColor('aliceblue');
     } else if (playerChoice == 'Rock') {
         if (computerChoice == 'Paper') {
             computerAnnounce.textContent = 'You lost! Paper beats Rock.';
-            computerAnnounce.style.color = "red";
+            changeComputerAnnounceColor('red');
             computerScore++;
         } else {
             computerAnnounce.textContent = 'You won! Rock beats Scissors.';
-            computerAnnounce.style.color = "green";
+            changeComputerAnnounceColor('green');
             playerScore++;
         }
     } else if (playerChoice == 'Paper') {
         if (computerChoice == 'Scissors') {
             computerAnnounce.textContent = 'You lost! Scissors beat Rock.';
-            computerAnnounce.style.color = "red";
+            changeComputerAnnounceColor('red');
             computerScore++;
         } else {
             computerAnnounce.textContent = 'You won! Paper beats Rock.';
-            computerAnnounce.style.color = "green";
+            changeComputerAnnounceColor('green');
             playerScore++;
         }
     } else if (playerChoice == 'Scissors') {
         if (computerChoice == 'Rock') {
             computerAnnounce.textContent = 'You lost! Rock beats Scissors.';
-            computerAnnounce.style.color = "red";
+            changeComputerAnnounceColor('red');
             computerScore++;
         } else {
             computerAnnounce.textContent = 'You won! Siccors beat Paper.';
-            computerAnnounce.style.color = "green";
+            changeComputerAnnounceColor('green');
             playerScore++;
         }
     }
@@ -76,11 +86,14 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function announceWinner() {
-    if (playerScore == computerScore) {
-        console.log('Bummer, it\'s a tie.');
-    } else if (playerScore > computerScore) {
-        console.log('Congratulations, you won!')
+    if (playerScore > computerScore) {
+        computerAnnounce.textContent = 'Congratulations, you won!';
+        changeComputerAnnounceColor('green');
+        computerAnnounce.style.fontSize = '60px';
     } else {
-        console.log('Computer won, better luck next time!');
+        computerAnnounce.textContent = 'Computer won, better luck next time!';
+        changeComputerAnnounceColor('red');
+        computerAnnounce.style.fontSize = '60px';
     }
+    resetScores();
 }
