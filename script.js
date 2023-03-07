@@ -47,13 +47,6 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        playRound(prompt("What do you choose?"), getComputerChoice());
-        console.log('Results: ' + playerScore + ' to ' + computerScore);
-    }
-}
-
 function announceWinner() {
     if (playerScore == computerScore) {
         console.log('Bummer, it\'s a tie.');
@@ -65,7 +58,6 @@ function announceWinner() {
 }
 
 function main() {
-    playGame();
     announceWinner();
 }
 
