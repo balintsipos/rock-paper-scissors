@@ -8,16 +8,28 @@ const rockButton = document.querySelector("#rockBtn");
 const paperButton = document.querySelector("#paperBtn");
 const scissorsButton = document.querySelector("#scissorsBtn");
 
+const computerAnnounce = document.querySelector(".computerAnnounce");
+
 
 rockButton.onclick = () => playRound("rock", getComputerChoice());
 paperButton.onclick = () => playRound("paper", getComputerChoice());
 scissorsButton.onclick = () => playRound("scissors", getComputerChoice());
 
+function updateScores() {
+    playerScoreCounter.textContent = playerScore;
+    computerScoreCounter.textContent = computerScore;
+}
+
 function getComputerChoice() {
     choices = ["Rock", "Paper", "Scissors"];
     choice = choices[Math.floor(Math.random()*3)];
-    console.log(choice);
     return choice;
+}
+
+function checkWinCondition() {
+    if (playerScore == 5 || computerScore == 5) {
+        announceWinner();
+    }
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -25,38 +37,42 @@ function playRound(playerChoice, computerChoice) {
     playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
     
     if (playerChoice == computerChoice) {
-        console.log('It\'s a tie!')
-    }
-
-    if (playerChoice == 'Rock') {
+        computerAnnounce.textContent = 'It\'s a tie!';
+        computerAnnounce.style.color = "aliceblue";
+    } else if (playerChoice == 'Rock') {
         if (computerChoice == 'Paper') {
-            console.log('You lost! Paper beats Rock.');
+            computerAnnounce.textContent = 'You lost! Paper beats Rock.';
+            computerAnnounce.style.color = "red";
             computerScore++;
         } else {
-            console.log('You won! Rock beats Scissors.');
+            computerAnnounce.textContent = 'You won! Rock beats Scissors.';
+            computerAnnounce.style.color = "green";
             playerScore++;
         }
-    }
-
-    if (playerChoice == 'Paper') {
+    } else if (playerChoice == 'Paper') {
         if (computerChoice == 'Scissors') {
-            console.log('You lost! Scissors beat Rock.');
+            computerAnnounce.textContent = 'You lost! Scissors beat Rock.';
+            computerAnnounce.style.color = "red";
             computerScore++;
         } else {
-            console.log('You won! Paper beats Rock.');
+            computerAnnounce.textContent = 'You won! Paper beats Rock.';
+            computerAnnounce.style.color = "green";
+            playerScore++;
+        }
+    } else if (playerChoice == 'Scissors') {
+        if (computerChoice == 'Rock') {
+            computerAnnounce.textContent = 'You lost! Rock beats Scissors.';
+            computerAnnounce.style.color = "red";
+            computerScore++;
+        } else {
+            computerAnnounce.textContent = 'You won! Siccors beat Paper.';
+            computerAnnounce.style.color = "green";
             playerScore++;
         }
     }
 
-    if (playerChoice == 'Scissors') {
-        if (computerChoice == 'Rock') {
-            console.log('You lost! Rock beats Scissors.');
-            computerScore++;
-        } else {
-            console.log('You won! Siccors beat Paper.');
-            playerScore++;
-        }
-    }
+    updateScores();
+    checkWinCondition();
 }
 
 function announceWinner() {
@@ -68,10 +84,3 @@ function announceWinner() {
         console.log('Computer won, better luck next time!');
     }
 }
-
-function main() {
-    announceWinner();
-    playerScoreCounter.textContent = "xd";
-}
-
-main();
