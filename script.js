@@ -1,6 +1,18 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const playerScoreCounter = document.querySelector("#playerScoreCounter");
+const computerScoreCounter = document.querySelector("#computerScoreCounter");
+
+const rockButton = document.querySelector("#rockBtn");
+const paperButton = document.querySelector("#paperBtn");
+const scissorsButton = document.querySelector("#scissorsBtn");
+
+
+rockButton.onclick = () => playRound("rock", getComputerChoice());
+paperButton.onclick = () => playRound("paper", getComputerChoice());
+scissorsButton.onclick = () => playRound("scissors", getComputerChoice());
+
 function getComputerChoice() {
     choices = ["Rock", "Paper", "Scissors"];
     choice = choices[Math.floor(Math.random()*3)];
@@ -59,6 +71,7 @@ function announceWinner() {
 
 function main() {
     announceWinner();
+    playerScoreCounter.textContent = "xd";
 }
 
 main();

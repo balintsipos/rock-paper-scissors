@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,15 +13,20 @@
     <div class="scoreContainer">
         <div class="playerScoreContainer">
             <p id="playerScoreLabel">Player Score:</p>
+            <p id="playerScoreCounter">0</p>
         </div>
         <div class="computerScoreContainer">
             <p id="computerScoreLabel">Computer Score:</p>
+            <p id="computerScoreCounter">0</p>
         </div>
     </div>
     <div class="btnContainer">
-        <button type="button" class="choiceBtn">Rock</button>
-        <button type="button" class="choiceBtn">Paper</button>
-        <button type="button" class="choiceBtn">Scissors</button>
+        <button type="button" class="choiceBtn" id="rockBtn">Rock</button>
+        <button type="button" class="choiceBtn" id="paperBtn">Paper</button>
+        <button type="button" class="choiceBtn" id="scissorsBtn">Scissors</button>
+    </div>
+    <div class="computerChoiceAnnounce">
+        lorem ipsum
     </div>
     <p class="footer">Bálint Sipos 2023</p>
 </body>
